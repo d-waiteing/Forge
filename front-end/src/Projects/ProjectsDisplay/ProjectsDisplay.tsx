@@ -3,6 +3,7 @@ import { ProjectsStateContext } from "../ProjectsContext/ProjectsStateProvider";
 import Table from "react-bootstrap/esm/Table";
 import Button from "react-bootstrap/esm/Button";
 import Badge from "react-bootstrap/esm/Badge";
+import { DeleteProject } from "./DeleteProject";
 
 
 export function ProjectsDisplay() {
@@ -28,9 +29,9 @@ export function ProjectsDisplay() {
                         <td>{project.description}</td>
                         <td><Badge bg="secondary">{project.status}</Badge></td>
                         <td>{project.dueDate || "-"}</td>
-                        <td>
+                        <td className="flex gap-2">
                             <Button size="sm" variant="warning">Edit</Button>
-                            <Button size="sm" variant="danger">Delete</Button>
+                            <DeleteProject project={project} />
                         </td>
                     </tr>
                 ))}
