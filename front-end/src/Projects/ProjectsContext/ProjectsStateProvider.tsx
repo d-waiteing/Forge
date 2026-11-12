@@ -13,6 +13,8 @@ export interface Project {
     id: string;
     name: string;
     description: string;
+    status: string;
+    dueDate?: string;
 }
 
 export const ProjectsStateContext = createContext<ProjectsStateContext>({} as ProjectsStateContext);

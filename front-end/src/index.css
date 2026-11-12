@@ -30,3 +30,30 @@ div {
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.25);
 }
+
+.forge-modal {
+    background: rgba(66, 16, 120, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+
+}
+
+.forge-modal .modal-header,
+.forge-modal .modal-footer {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.forge-modal .modal-content {
+    border: 5px white solid;
+}
+
+.forge-modal .btn-close {
+    filter: invert(1);
+}
+
+.forge-modal .modal-title {
+    color: white;
+}

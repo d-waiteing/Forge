@@ -6,7 +6,7 @@ type SettingsModalProps = {
 
 function SettingsModal({ onHide }: SettingsModalProps) {
   return (
-    <Modal show={true} onHide={onHide}>
+    <Modal className="forge-modal" show={true} onHide={onHide}>
       <Modal.Header closeButton>
         <Modal.Title>Settings</Modal.Title>
       </Modal.Header>

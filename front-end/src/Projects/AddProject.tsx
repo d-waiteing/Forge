@@ -12,7 +12,8 @@ export function AddProject() {
         const newProject = {
             id: "",
             name: "New Project",
-            description: "This is a new project."
+            description: "This is a new project.",
+            status: "New",
         }
         addProject(newProject);
     }
