@@ -1,0 +1,32 @@
+import { createContext, useCallback, useState } from "react";
+
+interface ProjectsStateContext {
+    projectsState: ProjectsState;
+    addProject: (project: Project) => void;
+}
+
+interface ProjectsState {
+    projects: Project[];
+}
+
+export interface Project {
+    id: string;
+    name: string;
+    description: string;
+}
+
+export const ProjectsStateContext = createContext<ProjectsStateContext>({} as ProjectsStateContext);
+
+export function ProjectsStateProvider({ children }: { children: React.ReactNode }) {
+    const [projectsState, setProjectsState] = useState<ProjectsState>({ projects: [] });
+
+    const addProject = useCallback((project: Project) => {
+        setProjectsState((prevProjects) => ({ projects: [...prevProjects.projects, project] }));
+    }, []);
+
+    return (
+        <ProjectsStateContext.Provider value={{ projectsState, addProject }}>
+            {children}
+        </ProjectsStateContext.Provider>
+    )
+}

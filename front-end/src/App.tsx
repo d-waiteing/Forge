@@ -6,6 +6,8 @@ import Deployments from "./Deployments/Deployments"
 
 function App() {
 
+  document.title = "Forge 🔥"
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
