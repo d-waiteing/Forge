@@ -44,6 +44,7 @@ div {
 .forge-modal .modal-header,
 .forge-modal .modal-footer {
     border-color: rgba(255, 255, 255, 0.15);
+    background-color: #2c0652;
 }
 
 .forge-modal .modal-content {

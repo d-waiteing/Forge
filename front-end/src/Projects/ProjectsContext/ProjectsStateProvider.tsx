@@ -3,6 +3,8 @@ import { createContext, useCallback, useState } from "react";
 interface ProjectsStateContext {
     projectsState: ProjectsState;
     addProject: (project: Project) => void;
+    deleteProject: (projectId: string) => void;
+    updateProject: (updatedProject: Project) => void;
 }
 
 interface ProjectsState {
@@ -25,9 +27,19 @@ export function ProjectsStateProvider({ children }: { children: React.ReactNode 
     const addProject = useCallback((project: Project) => {
         setProjectsState((prevProjects) => ({ projects: [...prevProjects.projects, project] }));
     }, []);
+    
+    const deleteProject = useCallback((projectId: string) => {
+        setProjectsState((prevProjects) => ({ projects: prevProjects.projects.filter((p) => p.id !== projectId) }));
+    }, []);
+
+    const updateProject = useCallback((updatedProject: Project) => {
+        setProjectsState((prevProjects) => ({
+            projects: prevProjects.projects.map((project) =>  project.id === updatedProject.id ? updatedProject : project)
+        }));
+    }, []);
 
     return (
-        <ProjectsStateContext.Provider value={{ projectsState, addProject }}>
+        <ProjectsStateContext.Provider value={{ projectsState, addProject, deleteProject, updateProject }}>
             {children}
         </ProjectsStateContext.Provider>
     )

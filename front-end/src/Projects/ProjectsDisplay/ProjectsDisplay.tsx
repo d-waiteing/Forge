@@ -23,12 +23,12 @@ export function ProjectsDisplay() {
             </thead>
             <tbody>
                 {projects.map((project) => (
-                    <tr key={project.id}>
+                    <tr className="align-middle" key={project.id}>
                         <td>{project.name}</td>
                         <td>{project.description}</td>
                         <td><Badge bg="secondary">{project.status}</Badge></td>
                         <td>{project.dueDate || "-"}</td>
-                        <td className="flex gap-2">
+                        <td>
                             <Button size="sm" variant="warning">Edit</Button>
                             <Button size="sm" variant="danger">Delete</Button>
                         </td>
