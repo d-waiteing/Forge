@@ -1,5 +1,5 @@
 import { useCallback, useContext } from "react";
-import { ProjectsStateContext } from "../ProjectsContext/ProjectsStateProvider";
+import { ProjectsStateContext, ProjectStatus } from "../ProjectsContext/ProjectsStateProvider";
 import Table from "react-bootstrap/esm/Table";
 import Badge from "react-bootstrap/esm/Badge";
 import { DeleteProject } from "./DeleteProject";
@@ -9,9 +9,12 @@ import { EditProject } from "./EditProject";
 export function ProjectsDisplay() {
     const { projectsState: { projects } } = useContext(ProjectsStateContext);
   
-    const badgeColor = useCallback((status: string) => {
-        if (status === "New"){
+    const badgeColor = useCallback((status: ProjectStatus) => {
+        if (status === ProjectStatus.NEW){
             return "primary";
+        }
+        else if (status === ProjectStatus.COMPLETE){
+            return "success";
         }
 
         return "secondary";

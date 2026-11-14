@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { ProjectsStateContext, type Project } from "./ProjectsContext/ProjectsStateProvider";
+import { ProjectsStateContext, ProjectStatus, type Project } from "./ProjectsContext/ProjectsStateProvider";
 import { useCallback, useContext, useMemo, useState } from "react";
 
 type AddProjectModalProps = {
@@ -15,7 +15,7 @@ export function AddProjectModal({ onHide }: AddProjectModalProps) {
         id: crypto.randomUUID(),
         name: "",
         description: "",
-        status: "New",
+        status: ProjectStatus.NEW,
         dueDate: ""
     });
 

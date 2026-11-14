@@ -11,11 +11,19 @@ interface ProjectsState {
     projects: Project[];
 }
 
+export const ProjectStatus = {
+    NEW: 'NEW',
+    IN_PROGRESS: 'IN PROGRESS',
+    COMPLETE: 'COMPLETE',
+} as const;
+
+export type ProjectStatus = typeof ProjectStatus[keyof typeof ProjectStatus]
+
 export interface Project {
     id: string;
     name: string;
     description: string;
-    status: string;
+    status: ProjectStatus;
     dueDate?: string;
 }
 

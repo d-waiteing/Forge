@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo, useState } from "react";
-import { Button, Modal } from "react-bootstrap";
-import { ProjectsStateContext, type Project } from "../ProjectsContext/ProjectsStateProvider";
+import { Button, Dropdown, Modal } from "react-bootstrap";
+import { ProjectsStateContext, type Project, ProjectStatus } from "../ProjectsContext/ProjectsStateProvider";
 
 interface EditProjectProps {
     project: Project;
@@ -43,7 +43,7 @@ export function EditProject(props: EditProjectProps) {
     }, [project]);
 
     const disabled = useMemo(() => {
-            return !project.name || !project.description;
+            return !project.name || !project.description || !project.status;
     }, [project.name, project.description]);
     
     const required = <span className="text-red-300">*</span>;
@@ -71,6 +71,22 @@ export function EditProject(props: EditProjectProps) {
                         <input type="text" className="form-control" value={project.description} onChange={(e) => {
                             handleInputChange("description", e.target.value);
                         }} />
+                    </div>
+                    <div className="flex flex-col">
+                        <p className="font-bold">Status: {required}</p>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="secondary">{project.status}</Dropdown.Toggle>
+                            <Dropdown.Menu>
+                            {Object.values(ProjectStatus).map((status) => (
+                                <Dropdown.Item
+                                    key={status}
+                                    onClick={() => handleInputChange("status", status)}
+                                >
+                                    {status}
+                                </Dropdown.Item>
+                            ))}
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                     <div className="flex flex-col">
                         <p className="font-bold">Due Date:</p>
