@@ -11,11 +11,19 @@ interface TicketsState {
     tickets: Ticket[];
 }
 
+export const TicketStatus = {
+    NEW: 'NEW',
+    IN_PROGRESS: 'IN PROGRESS',
+    COMPLETE: 'COMPLETE',
+} as const;
+
+export type TicketStatus = typeof TicketStatus[keyof typeof TicketStatus]
+
 export interface Ticket {
     id: string;
     name: string;
     description: string;
-    status: string;
+    status: TicketStatus;
     dueDate?: string;
 }
 

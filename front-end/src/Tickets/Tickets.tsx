@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { AddTicket } from "./AddTicket";
 import { TicketsProvider } from "./TicketsContext/TicketsContext";
+import { TicketsDisplay } from "./TicketsDisplay/TicketsDisplay";
 
 
 function Tickets() {
@@ -21,6 +22,7 @@ function Tickets() {
               <h1>Tickets</h1>
               <AddTicket />
         </div>
+        <TicketsDisplay />
       </div>
     </TicketsProvider>
   )
