@@ -19,7 +19,7 @@ export function TicketsDisplay() {
                 <div className="glass flex flex-col items-center p-2">
                     <h3>{status}</h3>
                     {ticketsByStatus(status).map((t) => (
-                        <TicketSnippet />
+                        <TicketSnippet ticket={t}/>
                     ))}
                 </div>                    
             ))}
