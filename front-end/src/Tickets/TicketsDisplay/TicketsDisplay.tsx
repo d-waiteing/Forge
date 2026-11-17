@@ -1,28 +1,31 @@
-import { useCallback, useContext } from "react";
+import { DragDropProvider } from "@dnd-kit/react";
 import { TicketsStateContext, TicketStatus } from "../TicketsContext/TicketsStateProvider";
-import { TicketSnippet } from "./TicketSnippet";
+import { TicketColumn } from "./TicketColumn";
+import { useContext } from "react";
 
 
 export function TicketsDisplay() {
 
     const context = useContext(TicketsStateContext);
-    const { ticketsState } = context;
-
-    const ticketsByStatus = useCallback((givenStatus: TicketStatus) => {
-        return ticketsState.tickets.filter((t) => t.status === givenStatus);
-    }, [ticketsState.tickets])
-
+    const { setTicketStatus } = context;
 
     return (
-        <div className="flex justify-between p-2">
-            {Object.values(TicketStatus).map((status) => (
-                <div className="glass flex flex-col items-center p-2">
-                    <h3>{status}</h3>
-                    {ticketsByStatus(status).map((t) => (
-                        <TicketSnippet ticket={t}/>
-                    ))}
-                </div>                    
-            ))}
-        </div>
+        <DragDropProvider
+            onDragEnd={(e) => {
+                if (e.canceled) return;
+
+                const {source, target} = e.operation;
+
+                if (!!source && !!target) {
+                    setTicketStatus(source.id as string, target.id as TicketStatus)
+                }
+            }}
+        >
+            <div className="flex justify-between p-2">
+                {Object.values(TicketStatus).map((status) => (
+                    <TicketColumn status={status}/>                  
+                ))}
+            </div>
+        </DragDropProvider>
     );
 }
